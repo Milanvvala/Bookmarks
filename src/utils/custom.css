@@ -1,0 +1,8 @@
+kbd { color: white; background-color: red; }
+.closebtn {
+  margin-left: 15px; color: white; font-weight: bold;
+  float: right; cursor: pointer; transition: 0.3s; }
+.closebtn:hover { color: black; }
+div > i { margin-inline: 10px; }
+#divi { float: right; }
+article { padding: 20px; margin-top: 20px; margin-bottom: 20px; }
