@@ -1,8 +1,9 @@
-kbd { color: white; background-color: red; }
+kbd { color: black; background-color:white; }
 .closebtn {
   margin-left: 15px; color: white; font-weight: bold;
   float: right; cursor: pointer; transition: 0.3s; }
 .closebtn:hover { color: black; }
 div > i { margin-inline: 10px; }
 #divi { float: right; }
-article { padding: 20px; margin-top: 20px; margin-bottom: 20px; }
+#card { padding: 20px; margin-top: 20px; margin-bottom: 20px; }
+#card > a {text-decoration: none}

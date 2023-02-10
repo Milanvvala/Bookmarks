@@ -3,27 +3,29 @@ import { Context } from '../Context/mainContext';
 import { Card, Modal } from "./";
 import '../utils/custom.css'
 
-
 export default function Explore(props) {
 
-  const { temp, todo, setTodo, bookmarks, setBookmarks, refClick,add } = useContext(Context);
+  const { temp, bookmarks, setBookmarks, refClick,add } = useContext(Context);
   const handleDelete = (id) => {
     console.log('delete', id)
-    let newBookmarks = bookmarks.filter((e) => { return e.uID !== id })
+    let newBookmarks = bookmarks.filter((e) => { return e._id !== id })
     setBookmarks(newBookmarks)
   }; const handleUpdate = (e) => { console.log('update', e); }
-
+ 
   return (<>
     <button className="secondary" onClick={refClick}>+ Create</button>
     <Modal type='form' submit={add} value={'working todo'}/>
-    {(todo.length === 0) && 'no todos'}
+    {(bookmarks.length === 0) && <p>No Bookmarks</p>}
     {/* {todo.map((e) => { return <article key={e.todo}>{e.todo}</article> })} */}
     {bookmarks.map((e) => {
-      return (<article key={e.uID}>{e.url}
+      return (<article key={e._id} id='card' ><a className="contrast" href={e.url} >
+      <img src={e.fevicon} alt='default_alt' style={{display:'inline-block',width:'24px', height:'24px', marginRight:'10px'}} />
+      {e.title} : {e.description}</a>
         <div id='divi'>
           <i onClick={()=>handleUpdate(e)} className="fa-solid fa-pen-to-square" />
-          <i onClick={()=>handleDelete(e.uID)} className="fa-solid fa-trash-can" />
-        </div></article>)
+          <i onClick={()=>handleDelete(e._id)} className="fa-solid fa-trash-can" />
+          </div>
+        </article>)
     })}
   </>)
 }
@@ -42,4 +44,11 @@ const newN = notes.filter((note) => { return note._id !== id }); setnotes(newN)
   "_id": "63e522545d2bebfbc7cfffb0",
   "__v": 0
 }
+ const tb = [{ url: "https://picocss.com/", title: "1-Pico.css • Minimal CSS Framework for semantic HTML",
+    description: "Elegant styles for all native HTML elements without .classes and dark mode automatically enabled. 7.9 kB minified and gzipped!", fevicon: "https://www.google.com/s2/favicons?domain=https://picocss.com/&sz=32", _id: "63e522545d2bebfbc7cfffb0",},
+    { url: "https://picocss.com/", title: "2_Pico.css • Minimal CSS Framework for semantic HTML",
+    description: "Elegant styles for all native HTML elements without .classes and dark mode automatically enabled. 7.9 kB minified and gzipped!", fevicon: "https://www.google.com/s2/favicons?domain=https://picocss.com/&sz=64", _id: "63e522545d2bebfbc7cfffb1",},
+    { url: "https://picocss.com/", title: "3_Pico.css • Minimal CSS Framework for semantic HTML",
+    description: "Elegant styles for all native HTML elements without .classes and dark mode automatically enabled. 7.9 kB minified and gzipped!", fevicon: "https://www.google.com/s2/favicons?domain=https://picocss.com/&sz=128", _id: "63e522545d2bebfbc7cfffb2",}
+  ]
 */}
