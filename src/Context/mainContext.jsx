@@ -32,7 +32,8 @@ const CoAPI = (props) => {
 
 
     return (
-        <Context.Provider value={{ temp, setTemp, handleChange, signUpUrl, loginUrl, bookmarks, setBookmarks, refClick,
+        <Context.Provider value={{
+            temp, setTemp, handleChange, signUpUrl, loginUrl, bookmarks, setBookmarks, refClick,
             handleDelete, handleUpdate, add
         }}>
             {props.children}
