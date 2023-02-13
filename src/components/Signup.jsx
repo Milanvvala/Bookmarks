@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form } from './'
 
 function SignUp( props ) {
-  const { temp, signUpUrl } = useContext( Context )
+  const { temp, URL } = useContext( Context )
   const signUpcredencials = temp
   let navigate = useNavigate()
 
@@ -13,7 +13,7 @@ function SignUp( props ) {
     event.preventDefault()
     const { name, email, password } = signUpcredencials
 
-    const response = await fetch( signUpUrl, {
+    const response = await fetch( URL.signUpUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify( { name, email, password } )

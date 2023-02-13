@@ -1,33 +1,56 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Context } from '../Context/mainContext';
 import { Card, Modal } from "./";
 import '../utils/custom.css'
 
 export default function Explore(props) {
 
-  const { temp, bookmarks, setBookmarks, refClick,add } = useContext(Context);
+  const { bookmarks, setBookmarks, refClick, readitems } = useContext(Context);
+  let submit = 'create'
+  let navigate = useNavigate();
   const handleDelete = (id) => {
     console.log('delete', id)
     let newBookmarks = bookmarks.filter((e) => { return e._id !== id })
     setBookmarks(newBookmarks)
-  }; const handleUpdate = (e) => { console.log('update', e); }
- 
+  }; 
+  useEffect(() => {
+    if (localStorage.getItem('auth-token')) {
+      readitems();
+    } else { navigate("/login") }
+  }, [])
+
   return (<>
     <button className="secondary" onClick={refClick}>+ Create</button>
-    <Modal type='form' submit={add} value={'working todo'}/>
+    <Modal type='form' submit={submit} />
     {(bookmarks.length === 0) && <p>No Bookmarks</p>}
     {/* {todo.map((e) => { return <article key={e.todo}>{e.todo}</article> })} */}
     {bookmarks.map((e) => {
       return (<article key={e._id} id='card' ><a className="contrast" href={e.url} >
-      <img src={e.fevicon} alt='default_alt' style={{display:'inline-block',width:'24px', height:'24px', marginRight:'10px'}} />
-      {e.title} : {e.description}</a>
+        <img src={e.fevicon} alt='default_alt' style={{ display: 'inline-block', width: '24px', height: '24px', marginRight: '10px' }} />
+        {e.title} : {e.description}</a>
         <div id='divi'>
-          <i onClick={()=>handleUpdate(e)} className="fa-solid fa-pen-to-square" />
-          <i onClick={()=>handleDelete(e._id)} className="fa-solid fa-trash-can" />
-          </div>
-        </article>)
+          {/* <i onClick={() => handleUpdate(e)} className="fa-solid fa-pen-to-square" /> */}
+          <i onClick={() => handleDelete(e._id)} className="fa-solid fa-trash-can" />
+        </div>
+      </article>)
     })}
   </>)
+}
+{
+  /*
+  const updateItem = (currentEl) => {
+  refClick()
+  //open modal // set modal value to currunt element value through setnote({ id: c._id,url:c.url})
+  temp.url = currentEl.url
+}
+const upClick = () => {
+  // updateItem(temp.url)
+  //updateitem(id,url) from api with close modal with ref 
+  refClick()
+  submit = updateItem(todo)
+}
+  */
 }
 {/*
 {tools.map((e) => { return ( <Card tool={e} updateTool={updateTool} />) })} 

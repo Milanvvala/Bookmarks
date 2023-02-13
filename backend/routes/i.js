@@ -6,7 +6,7 @@ const { parser } = require('html-metadata-parser');
 
 
 // Route 1 : get all available items : GET "/getitems" login required
-router.get('/getitems', fetchuser,
+router.get('/readitems', fetchuser,
   async (req, res) => {
     try {
       const items = await Item.find({ user: req.user.id })
@@ -33,7 +33,7 @@ router.post('/createitem', fetchuser,
     } catch (error) { res.status(500).json({ error: error.massage, code_block: "/createitem catch block", type: "server error" }) }
   })
 
-// Route  : deleteitem : DELETE "/deleteitem" login required
+// Route 3 : deleteitem : DELETE "/deleteitem" login required
 router.delete('/deleteitem/:id', fetchuser,
   async (req, res) => {
     try {

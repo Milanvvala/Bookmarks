@@ -65,3 +65,24 @@ export default function Note(props) {
             <i onClick={() => { deleteNote(note._id) }}></i>
             <i onClick={() => { upNote(note) }}></i> </>)
 }
+
+const co = useContext(NoteContext)
+const { notes, getNotes, editNote } = co;
+let navigate = useNavigate();
+useEffect(() => {
+    if (localStorage.getItem('token')) {
+        getNotes();
+    } else { navigate("/login") }
+    // eslint-disable-next-line
+}, [])
+const [note, setnote] = useState({ id: "", e_title: "", e_desc: "", e_tag: "" })
+const upNote = (c) => {
+    refB.current.click();
+    setnote({ id: c._id, e_title: c.title, e_desc: c.desc, e_tag: c.tag })
+}
+const upCl = (e) => {
+    console.log("updating", note);
+    editNote(note.id, note.e_title, note.e_desc, note.e_tag)
+    refClose.current.click();
+    props.showAlert("updated", "success")
+}

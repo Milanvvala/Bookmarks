@@ -3,8 +3,10 @@ import { Context } from '../Context/mainContext';
 
 const Form = (props) => {
     const { type, submit } = props
-    const { handleChange, temp } = useContext(Context)
+    const { handleChange, temp, createitem } = useContext(Context)
     let dis = true
+    type === 'create' || type === 'login' ? dis = false : dis = (!(temp.password === temp.confirmPassword) || (temp.password === ''));
+    type === 'create' ? submit = createitem : '' ;
     return (
         <>  <div style={{ maxWidth: '500px' }}>
             <form onSubmit={submit} className="m-5">
@@ -31,7 +33,6 @@ const Form = (props) => {
                             <input onChange={handleChange} minLength={5} value={temp.confirmPassword} name="confirmPassword" id="confirmPassword" type="password" required /> </div> : ''}
                     </div>
                 </> : ''}
-                {type === 'create'? dis = false : dis = (!(temp.password === temp.confirmPassword) || (temp.password === '')) }
                 <button type="submit" disabled={dis}>Submit</button>
             </form>
         </div>
