@@ -1,12 +1,13 @@
 import { useContext } from 'react';
-import { Context } from '../Context/mainContext';
+import Context from '../Context/context';
 
 const Form = (props) => {
     const { type, submit } = props
-    const { handleChange, temp, createitem } = useContext(Context)
+    const { handleChange, temp, createitem,create } = useContext(Context)
     let dis = true
     type === 'create' || type === 'login' ? dis = false : dis = (!(temp.password === temp.confirmPassword) || (temp.password === ''));
-    type === 'create' ? submit = createitem : '' ;
+
+
     return (
         <>  <div style={{ maxWidth: '500px' }}>
             <form onSubmit={submit} className="m-5">

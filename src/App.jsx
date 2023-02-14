@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Navbar, Home, Login, SignUp, Alerts, Explore, Footer } from './components'
+import { Navbar, Home, Login, SignUp, Alerts, Explore, Footer, BuildWith } from './components'
 import CoAPI from './Context/mainContext';
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/buildwith" element={<BuildWith />} />
         </Routes>
       </CoAPI>
       <Footer />

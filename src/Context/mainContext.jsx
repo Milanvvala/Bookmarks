@@ -1,82 +1,65 @@
-import { createContext, useState } from "react";
-export const Context = createContext();
+import { useState, useContext } from "react"
+import Context from "./context"
 
 const CoAPI = (props) => {
-    const [temp, setTemp] = useState({ name: "", email: "", password: "", confirmPassword: "", url: "", id: '' })
-    const Host = "http://localhost:8000/"; const iUrl = `${Host}api/i/`; const id = temp.id
+
+    const [temp, setTemp] = useState({ name: "", email: "", password: "", confirmPassword: "", url: "", id: "" })
+    const Host = "http://localhost:8000/" 
+    const iUrl = `${Host}api/i/`
     const URL = {
         signUpUrl: `${Host}api/auth/createuser`, loginUrl: `${Host}api/auth/login`,
-        createUrl: `${iUrl}createitem`, readUrl: `${iUrl}readitems`, updateUrl: `${iUrl}updateitem/${id}`,
-        deleteUrl: `${iUrl}deleteitem/${id}`
+        createUrl: `${iUrl}createitem`, readUrl: `${iUrl}readitems`, updateUrl: `${iUrl}updateitem/${'id'}`,
+        deleteUrl: `${iUrl}deleteitem/`
     }
+    const handleChange = (event) => { setTemp({ ...temp, [event.target.name]: event.target.value }) }
 
-    const handleChange = (event) => { // console.log("handleChange", event.target.value) //test
-        setTemp({ ...temp, [event.target.name]: event.target.value })
-    }
-
-    const [bookmarks, setBookmarks] = useState([{ url: "https://example.com/", title: "Example_Title", description: "Example_Description", fevicon: "https://www.google.com/s2/favicons?domain=https://picocss.com/&sz=32", _id: "123", },])
+    const [bookmarks, setBookmarks] = useState([])
+    /* example object 
+    { 
+        url: "https://example.com/", 
+        title: "Example_Title", 
+        description: "Example_Description", 
+        fevicon: "https://www.google.com/s2/favicons?domain=https://picocss.com/&sz=32", 
+        _id: "123", 
+    }  
+    */
 
     function refClick() { temp.refModal() } //temp.modal.current.click()
-    const add = (e) => {
-        e.preventDefault()
-        let obj = { url: temp.url }; setBookmarks(bookmarks.concat(obj)); temp.refModal()
-    }
-    const handleDelete = (id) => {
-        console.log('delete', id)
-        let newBookmarks = bookmarks.filter((e) => { return e.uID !== id })
-        setBookmarks(newBookmarks)
-    }; const handleUpdate = (e) => { console.log('update', e); }
 
     // CRUD processess with API
     const header = { 'Content-Type': 'application/json', 'auth-token': localStorage.getItem("auth-token") }
     //create
     const createitem = async (url) => {
-        url.preventDefault()
-        console.log("createitem",url)
-        //api call
-        const response = await fetch(URL.createUrl, { method: 'POST', headers: header, body: JSON.stringify({ url }) });
+        const response = await fetch(URL.createUrl, { method: 'POST', headers: header, body: JSON.stringify({ url }) }) //api call
         //logic
-        let bookmark = await response.json(); console.log(bookmark);
-        setBookmarks(bookmarks.concat(bookmark)); temp.refModal()
+        let bookmark = await response.json()
+        setBookmarks(bookmarks.concat(bookmark))
     }
     //read
     const readitems = async () => {
-        console.log('readitems');
-        //api call
-        const response = await fetch(URL.readUrl, { method: 'GET', headers: header, });
-        const json = await response.json(); console.log(json);
-        setBookmarks(json) //logic
+        const response = await fetch(URL.readUrl, { method: 'GET', headers: header, }) //api call
+        //logic
+        const json = await response.json()
+        setBookmarks(json)
     }
-
+    //delete 
+    const deleteitem = async (id) => {
+        const response = await fetch(URL.deleteUrl + id, { method: 'DELETE', headers: header, }) //api call
+        //logic
+        const json = await response.json()
+        const newBM = bookmarks.filter((bookmark) => { return bookmark._id !== id })
+        setBookmarks(newBM)
+    }
     return (
-        <Context.Provider value={{
-            temp, setTemp, handleChange, URL, bookmarks, setBookmarks, refClick,
-            handleDelete, handleUpdate, add, createitem, readitems
-        }}>
+        <Context.Provider
+            value={{ temp, setTemp, handleChange, URL, bookmarks, setBookmarks, refClick, createitem, readitems, deleteitem }}
+        >
             {props.children}
         </Context.Provider>
     )
 }
-
 export default CoAPI
-//, uID: crypto.randomUUID()
-{
-    /*
-        //processess with api 
-    const header = { 'Content-Type': 'application/json', 'auth-token': localStorage.getItem("auth-token") }
-    //create
-    const createitem = async (url) => {
-        //api call
-        const response = await fetch(URL.createUrl, { method: 'POST', headers: header, body: JSON.stringify({ url }) });
-        //logic
-        console.log("adding item"); let bookmark = await response.json(); setBookmarks(bookmarks.concat(bookmark))
-    }
-    //read
-    const readitems = async () => {
-        //api call
-        const response = await fetch(URL.readUrl, { method: 'GET', headers: header, });
-        const json = await response.json(); console.log(json); setBookmarks(json) //logic
-    }
+{/*
     //update
     const updateitem = async (id, url) => {
         //api call
@@ -89,15 +72,5 @@ export default CoAPI
         }
         console.log(id, bookmarks, newBM); setBookmarks(newBM)
     }
-    //delete
-    const deleteitem = async (id) => {
-        //api call 
-        console.log(id)
-        const response = await fetch(URL.deleteUrl, { method: 'DELETE', headers: header, });
-        const json = response.json(); console.log(json)
-        //logic
-        console.log(" deleteing item " + id); const newBM = bookmarks.filter((bookmark) => { return bookmark._id !== id }); setBookmarks(newBM)
-    }
-
     */
 }

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context } from '../Context/mainContext';
+import Context from '../Context/context';
 import { useNavigate } from 'react-router-dom';
 import { Form } from './'
 

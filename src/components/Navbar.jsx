@@ -7,7 +7,6 @@ export default function Navbar() {
   const handleLogout = () => { 
     localStorage.removeItem('auth-token'); 
     navigate("/login"); 
-    console.log(localStorage.getItem('token')); 
   }
 
   return (<>
@@ -18,7 +17,7 @@ export default function Navbar() {
         {!localStorage.getItem('auth-token') ? <div>
           <li><Link className={`${location.pathname === "/login" ? "" : "secondary"}`} to="/login">Login</Link></li>
           <li><Link className={`${location.pathname === "/SignUP" ? "" : "secondary"}`} to="/SignUP">Signup</Link></li>
-        </div> : <a className='secondary outline' onClick={handleLogout} role="button">Logout</a>}
+        </div> : <div> <a href="#" className='secondary' onClick={()=>handleLogout()} role="button">Logout</a></div>}
       </ul>
     </nav>
   </>)

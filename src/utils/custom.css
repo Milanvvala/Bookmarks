@@ -1,9 +1,46 @@
-kbd { color: black; background-color:white; }
+kbd {
+  color: black;
+  background-color: white;
+}
 .closebtn {
-  margin-left: 15px; color: white; font-weight: bold;
-  float: right; cursor: pointer; transition: 0.3s; }
-.closebtn:hover { color: black; }
-div > i { margin-inline: 10px; }
-#divi { float: right; }
-#card { padding: 20px; margin-top: 20px; margin-bottom: 20px; }
-#card > a {text-decoration: none}
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: black;
+}
+div > i {
+  margin-inline: 10px;
+}
+#divi {
+  float: right;
+}
+#card {
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#card > a {
+  text-decoration: none;
+}
+#bwcard {
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  width: 75px;
+  text-align: center;
+}
+#bw{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media (min-width: 576px) {
+  #bw {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}

@@ -12,7 +12,6 @@ const fetchuser = (req, res, next) => {
         const payload = jwt.verify(jwtToken, jwtSignature)  //verifying token with signature
 
         req.user = payload.user  //sending request with data
-        console.log(payload.user)
 
         next()
         
