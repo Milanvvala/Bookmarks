@@ -6,12 +6,12 @@ import signupimg from '../assets/signupimg.svg'
 
 
 function SignUp(props) {
-  const { temp, URL } = useContext(Context)
+  const { temp, URL,showAlert } = useContext(Context)
   const signUpcredencials = temp
   let navigate = useNavigate()
 
   const signupSubmit = async (event) => {
-    console.log("signupSubmit") //testing
+    // console.log("signupSubmit") //testing
     event.preventDefault()
     const { name, email, password } = signUpcredencials
 
@@ -21,13 +21,14 @@ function SignUp(props) {
       body: JSON.stringify({ name, email, password })
     })
     const json = await response.json()
-    console.log(json) //testing
+    // console.log(json) //testing
 
     if (json.success) {   // save the auth token to local storage and redirect
+      showAlert('success','Acount Created')
       localStorage.setItem('auth-token', json.authToken)
       navigate("/explore")
     }
-    else { alert("invelid Credencials") }
+    else { showAlert('error','Invalid Credecials') }
   }
 
   return (

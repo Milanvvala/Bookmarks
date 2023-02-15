@@ -5,12 +5,12 @@ import { Form } from './'
 import loginimg from '../assets/loginimg.svg'
 
 function Login( props ) {
-  const { temp, URL } = useContext( Context )
+  const { temp, URL,showAlert } = useContext( Context )
   const loginCredencials = temp
   let navigate = useNavigate()
 
   const loginSubmit = async ( event ) => {
-    console.log( "loginSubmit" ) //testing
+    // console.log( "loginSubmit" ) //testing
     event.preventDefault()
     const { email, password } = loginCredencials
 
@@ -20,13 +20,14 @@ function Login( props ) {
       body: JSON.stringify( { email, password } )
     } );
     const json = await response.json()
-    console.log( json )
+    // console.log( json ) //testing
 
     if ( json.success ) {   // save the auth token to local storage and redirect
+      showAlert('success','Login Success')
       localStorage.setItem( 'auth-token', json.authToken )
       navigate( "/explore" )
     }
-    else { alert( "invelid Credencials" ) }
+    else { showAlert('error','Invalid Credecials') }
   }
 
   return (

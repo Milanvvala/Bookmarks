@@ -1,20 +1,23 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Context from '../Context/context';
-import { Card, Modal } from "./";
+import { Modal } from "./";
 import '../utils/custom.css'
 
 export default function Explore(props) {
-  const { bookmarks, refClick, readitems, deleteitem } = useContext(Context);
+  const { bookmarks, refClick, readitems, deleteitem, showAlert } = useContext(Context);
   let navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem('auth-token')) {
       readitems();
     } else { navigate("/login") }
   }, [])
   const handleDelete = (id) => { deleteitem(id) }
+
   return (<>
     <button className="contrast outline" onClick={refClick}>+ Create</button>
+    <button className="secondary" onClick={() => { showAlert('error', 'Process_Completes') }}>Show Alert</button>
     <Modal />
     {(bookmarks.length === 0) && <p>No Bookmarks</p>}
     {bookmarks.map((e) => {

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function Footer() {
     return (<>
-        <footer style={{ display: 'flex', justifyContent: 'space-between', marginTop:'50px' }} className='grid'>
+        <footer style={{ display: 'flex', justifyContent: 'space-between', marginTop:'20px' }} className='grid'>
             <div><p>
                 <Link to="/buildwith"> BuildWIth </Link>
                 | <Link to="/login"> Privacy Policy </Link>

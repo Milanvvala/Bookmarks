@@ -33,6 +33,7 @@ const Form = (props) => {
                             <label htmlFor="confirmPassword" required>Confirm Password</label>
                             <input onChange={handleChange} minLength={5} value={temp.confirmPassword} name="confirmPassword" id="confirmPassword" type="password" required /> </div> : ''}
                     </div>
+                            {dis === true ? <small>password and confirm Password does not match</small>:''}
                 </> : ''}
                 <button type="submit" disabled={dis}>Submit</button>
             </form>
