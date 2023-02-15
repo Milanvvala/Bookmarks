@@ -17,7 +17,7 @@ export default function Navbar() {
         {!localStorage.getItem('auth-token') ? <div>
           <li><Link className={`${location.pathname === "/login" ? "" : "secondary"}`} to="/login">Login</Link></li>
           <li><Link className={`${location.pathname === "/SignUP" ? "" : "secondary"}`} to="/SignUP">Signup</Link></li>
-        </div> : <div> <a href="#" className='secondary' onClick={()=>handleLogout()} role="button">Logout</a></div>}
+        </div> : <div> <li><a href="#" className='outline' onClick={()=>handleLogout()} role="button">Logout</a></li></div>}
       </ul>
     </nav>
   </>)

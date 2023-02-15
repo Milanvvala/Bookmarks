@@ -4,7 +4,7 @@ import Context from "./context"
 const CoAPI = (props) => {
 
     const [temp, setTemp] = useState({ name: "", email: "", password: "", confirmPassword: "", url: "", id: "" })
-    const Host = "http://localhost:8000/" 
+    const Host = "http://localhost:8000/"
     const iUrl = `${Host}api/i/`
     const URL = {
         signUpUrl: `${Host}api/auth/createuser`, loginUrl: `${Host}api/auth/login`,
@@ -23,6 +23,20 @@ const CoAPI = (props) => {
         _id: "123", 
     }  
     */
+
+    //alert
+    const [alert, setAlert] = useState(null);
+    const [aStyle, setaStyle] = useState({ position: 'fixed', top: '10%', display: 'none' })
+    const styles = {
+        primary: { color: 'white', backgroundColor: 'blue' }, success: { color: 'white', backgroundColor: 'green' },
+        warning: { color: 'black', backgroundColor: 'yellow' }, error: { color: 'white', backgroundColor: 'red' }
+      }
+    const showAlert = (type,massage) => {
+        setAlert({type,massage})
+        setaStyle({ position: 'fixed', top: '10%' })
+        setTimeout(() => { setAlert(null);setaStyle({ position: 'fixed', top: '10%', display: 'none' }) }, 3000);
+        temp.alertActive()
+    }
 
     function refClick() { temp.refModal() } //temp.modal.current.click()
 
@@ -52,7 +66,7 @@ const CoAPI = (props) => {
     }
     return (
         <Context.Provider
-            value={{ temp, setTemp, handleChange, URL, bookmarks, setBookmarks, refClick, createitem, readitems, deleteitem }}
+            value={{ temp, setTemp, handleChange, URL, bookmarks, setBookmarks, refClick, createitem, readitems, deleteitem, alert }}
         >
             {props.children}
         </Context.Provider>

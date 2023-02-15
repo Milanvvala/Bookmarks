@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import Context from '../Context/context';
 import { useNavigate } from 'react-router-dom';
 import { Form } from './'
+import loginimg from '../assets/loginimg.svg'
 
 function Login( props ) {
   const { temp, URL } = useContext( Context )
@@ -30,10 +31,9 @@ function Login( props ) {
 
   return (
     <>
-      <div style={ { display: 'flex', justifyContent: 'center' } }>
-        <article>
+      <div className='grid'>
           <Form type="login" submit={ loginSubmit } />
-        </article>
+          <img src={loginimg} href='/' />
       </div>
     </>
   )

@@ -15,11 +15,10 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/buildwith" element={<BuildWith />} />
         </Routes>
-      </CoAPI>
       <Footer />
-      <Alerts type='error ' massage='this is an Error'/>
+      <Alerts />
+      </CoAPI>
     </div>
   )
 }
-// https://www.google.com/s2/favicons?domain=${domain}&sz=${size} for any fevicon
 export default App

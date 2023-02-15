@@ -14,7 +14,7 @@ export default function Explore(props) {
   }, [])
   const handleDelete = (id) => { deleteitem(id) }
   return (<>
-    <button className="secondary" onClick={refClick}>+ Create</button>
+    <button className="contrast outline" onClick={refClick}>+ Create</button>
     <Modal />
     {(bookmarks.length === 0) && <p>No Bookmarks</p>}
     {bookmarks.map((e) => {

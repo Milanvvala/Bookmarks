@@ -3,9 +3,9 @@ import '../utils/custom.css'
 
 
 const BuildWith = () => {
-  const tools = ['html5', 'css3', 'javascript', 'react', 'reactrouter', 'nodedotjs', 'dotenv', 'bootstrap', 'jsonwebtokens', 'express', 'nodemon', 'mongodb', 'vite', 'npm', 'pnpm']
+  const tools = ['html5', 'css3', 'javascript', 'react', 'reactrouter', 'nodedotjs', 'dotenv', 'bootstrap', 'jsonwebtokens', 'express', 'nodemon', 'mongodb', 'vite', 'npm', 'pnpm','github']
   return (<>
-    <div>BuildWith</div><div className='grid' id='bw'>
+    <h4>BuildWith</h4><div className='grid' id='bw'>
       {
         tools.map((e) => {
           return (<div key={crypto.randomUUID()}>

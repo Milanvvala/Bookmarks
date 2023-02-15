@@ -12,3 +12,4 @@ export function Favorites(props) { const APIurl = "https://jsonplaceholder.typic
           return ( <div className="col-md-3 mx-3" key={toolElement.id}> <ToolCard tool={toolElement} /></div>)
         })} </div></div></>)
 }
+// https://www.google.com/s2/favicons?domain=${domain}&sz=${size} for any fevicon

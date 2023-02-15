@@ -41,6 +41,6 @@ div > i {
 }
 @media (min-width: 576px) {
   #bw {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }
