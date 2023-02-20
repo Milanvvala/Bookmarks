@@ -16,7 +16,7 @@ function App() {
           <Route path="/buildwith" element={<BuildWith />} />
         </Routes>
       <Footer />
-      <Alerts />
+      {/* <Alerts /> */}
       </CoAPI>
     </div>
   )
